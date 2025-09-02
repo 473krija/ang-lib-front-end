@@ -1,0 +1,27 @@
+<h2>{{ isEdit ? 'Edit Book' : 'Add Book' }}</h2>
+
+<form (ngSubmit)="saveBook()" #bookForm="ngForm">
+  <label>Title: 
+    <input [(ngModel)]="book.title" name="title" required />
+  </label><br>
+
+  <label>Author: 
+    <input [(ngModel)]="book.author" name="author" required />
+  </label><br>
+
+  <label>Genre: 
+    <input [(ngModel)]="book.genre" name="genre" />
+  </label><br>
+
+  <label>Published Date: 
+    <input type="date" [(ngModel)]="book.published_date" name="published_date" />
+  </label><br>
+
+  <label>Available Copies: 
+    <input type="number" [(ngModel)]="book.available_copies" name="available_copies" min="0" />
+  </label><br>
+
+  <button type="submit" [disabled]="bookForm.invalid">💾 Save</button>
+</form>
+
+

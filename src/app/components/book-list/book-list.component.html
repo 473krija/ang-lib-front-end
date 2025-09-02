@@ -1,0 +1,36 @@
+<h2>📚 Book List</h2>
+<button routerLink="/books/add">➕ Add Book</button>
+
+<!-- ✅ Add Book Form directly in the list -->
+<app-book-form (bookAdded)="onBookAdded($event)"></app-book-form>
+
+<hr />
+
+<table border="1" cellpadding="8">
+  <tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Published</th>
+    <th>Available Copies</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let book of books">
+    <td>{{ book.id }}</td>
+    <td>{{ book.title }}</td>
+    <td>{{ book.author }}</td>
+    <td>{{ book.published_date }}</td>
+    <td>{{ book.available_copies }}</td>
+    <td>
+      <button [routerLink]="['/books/edit', book.id]">✏ Edit</button>
+      <button (click)="deleteBook(book.id!)">🗑 Delete</button>
+    </td>
+  </tr>
+</table>
+
+<!-- ✅ Pagination Controls -->
+<div class="pagination">
+  <button (click)="loadBooks(currentPage - 1)" [disabled]="!pagination.previous">Previous</button>
+  <span> Page {{ currentPage }} </span>
+  <button (click)="loadBooks(currentPage + 1)" [disabled]="!pagination.next">Next</button>
+</div>
