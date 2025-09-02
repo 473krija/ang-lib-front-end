@@ -1,0 +1,46 @@
+<div class="container mt-4">
+  <h2>{{ isEditMode ? 'Edit Author' : 'Add Author' }}</h2>
+
+  <form [formGroup]="authorForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Author Name</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        formControlName="name"
+        required
+      />
+      <div *ngIf="authorForm.get('name')?.invalid && authorForm.get('name')?.touched" class="text-danger">
+        Name is required
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="bio" class="form-label">Biography</label>
+      <textarea
+        id="bio"
+        class="form-control"
+        rows="4"
+        formControlName="bio"
+      ></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="birth_date" class="form-label">Birth Date</label>
+      <input
+      type="date"
+      id="birth_date"
+      class="form-control"
+      formControlName="birth_date"/>
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="authorForm.invalid">
+      {{ isEditMode ? 'Update' : 'Add' }} Author
+    </button>
+    <button type="button" class="btn btn-secondary ms-2" [routerLink]="['/authors']">
+      Cancel
+    </button>
+  </form>
+</div>
+

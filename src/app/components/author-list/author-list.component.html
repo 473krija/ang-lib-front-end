@@ -1,0 +1,29 @@
+<div class="container mt-4">
+  <h2>Authors</h2>
+
+  <button class="btn btn-primary mb-3" [routerLink]="['/authors/add']">Add Author</button>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Biography</th>
+        <th>Birth_date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let author of authors">
+        <td>{{ author.id }}</td>
+        <td>{{ author.name }}</td>
+        <td>{{ author.biography }}</td>
+        <td>{{ author.birth_date }}</td>
+        <td>
+          <button class="btn btn-sm btn-info" [routerLink]="['/authors/edit', author.id]">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteAuthor(author.id!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

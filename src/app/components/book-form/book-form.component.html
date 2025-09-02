@@ -6,7 +6,9 @@
   </label><br>
 
   <label>Author: 
-    <input [(ngModel)]="book.author" name="author" required />
+    <select [(ngModel)]="book.author" name="author" required>
+      <option *ngFor="let author of authors" [value]="author.id">{{ author.name }}</option>
+  </select>
   </label><br>
 
   <label>Genre: 

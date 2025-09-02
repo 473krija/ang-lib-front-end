@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Book, BookApiResponse } from '../models/book';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -50,9 +51,6 @@ export class BookService {
     return this.http.delete(`${this.booksApiUrl}${id}/`);
   }
 
-  // ✅ Get all authors
-  getAuthors(): Observable<any[]> {
-    return this.http.get<any[]>(this.authorsApiUrl);
-  }
+  
 }
 
