@@ -28,7 +28,7 @@ export class AuthorFormComponent implements OnInit {
     // ✅ Create form
     this.authorForm = this.fb.group({
       name: ['', Validators.required],
-      bio: [''], // Optional: only if your Author model has a bio field
+      biography: [''], // Optional: only if your Author model has a bio field
       birth_date: ['', Validators.required]
     });
 

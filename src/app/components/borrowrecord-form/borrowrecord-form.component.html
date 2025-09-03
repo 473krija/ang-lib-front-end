@@ -1,0 +1,65 @@
+<div class="container mt-4">
+  <h2>{{ isEditMode ? 'Edit Borrow Record' : 'Add Borrow Record' }}</h2>
+
+  <form [formGroup]="borrowRecordForm" (ngSubmit)="onSubmit()">
+    <!-- Book Dropdown -->
+    <div class="mb-3">
+      <label for="book" class="form-label">Book</label>
+      <select id="book" class="form-control" formControlName="book" required>
+        <option value="" disabled>Select a book</option>
+        <option *ngFor="let book of books" [value]="book.id">
+          {{ book.title }}
+        </option>
+      </select>
+      <div *ngIf="borrowRecordForm.get('book')?.invalid && borrowRecordForm.get('book')?.touched" class="text-danger">
+        Book is required
+      </div>
+    </div>
+
+    <!-- Borrower Dropdown -->
+    <div class="mb-3">
+      <label for="borrower" class="form-label">Borrower</label>
+      <select id="borrower" class="form-control" formControlName="borrower" required>
+        <option value="" disabled>Select a borrower</option>
+        <option *ngFor="let borrower of borrowers" [value]="borrower.id">
+          {{ borrower.name }}
+        </option>
+      </select>
+      <div *ngIf="borrowRecordForm.get('borrower')?.invalid && borrowRecordForm.get('borrower')?.touched" class="text-danger">
+        Borrower is required
+      </div>
+    </div>
+
+    <!-- Borrow Date -->
+    <div class="mb-3">
+      <label for="borrow_date" class="form-label">Borrow Date</label>
+      <input
+        type="date"
+        id="borrow_date"
+        class="form-control"
+        formControlName="borrow_date"
+        required
+      />
+    </div>
+
+    <!-- Return Date -->
+    <div class="mb-3">
+      <label for="return_date" class="form-label">Return Date</label>
+      <input
+        type="date"
+        id="return_date"
+        class="form-control"
+        formControlName="return_date"
+        required
+      />
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="borrowRecordForm.invalid">
+      {{ isEditMode ? 'Update' : 'Add' }} Record
+    </button>
+    <button type="button" class="btn btn-secondary ms-2" [routerLink]="['/borrowrecords']">
+      Cancel
+    </button>
+  </form>
+</div>
+

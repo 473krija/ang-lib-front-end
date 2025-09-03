@@ -1,0 +1,59 @@
+<div class="container mt-4">
+  <h2>{{ isEditMode ? 'Edit Borrower' : 'Add Borrower' }}</h2>
+
+  <form [formGroup]="borrowerForm" (ngSubmit)="onSubmit()">
+    <!-- Name -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Borrower Name</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        formControlName="name"
+        required
+      />
+      <div *ngIf="borrowerForm.get('name')?.invalid && borrowerForm.get('name')?.touched" class="text-danger">
+        Name is required
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="email"
+        id="email"
+        class="form-control"
+        formControlName="email"
+        required
+      />
+      <div *ngIf="borrowerForm.get('email')?.invalid && borrowerForm.get('email')?.touched" class="text-danger">
+        A valid email is required
+      </div>
+    </div>
+
+    <!-- Joined Date -->
+    <div class="mb-3">
+      <label for="joined_date" class="form-label">Joined Date</label>
+      <input
+        type="date"
+        id="joined_date"
+        class="form-control"
+        formControlName="joined_date"
+        required
+      />
+      <div *ngIf="borrowerForm.get('joined_date')?.invalid && borrowerForm.get('joined_date')?.touched" class="text-danger">
+        Joined date is required
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <button type="submit" class="btn btn-success" [disabled]="borrowerForm.invalid">
+      {{ isEditMode ? 'Update' : 'Add' }} Borrower
+    </button>
+    <button type="button" class="btn btn-secondary ms-2" [routerLink]="['/borrowers']">
+      Cancel
+    </button>
+  </form>
+</div>
+

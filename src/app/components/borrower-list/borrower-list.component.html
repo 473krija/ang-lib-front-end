@@ -1,0 +1,47 @@
+<div class="container mt-4">
+  <h2>Borrowers</h2>
+
+  <button class="btn btn-primary mb-3" [routerLink]="['/borrowers/add']">+ Add Borrower</button>
+
+  <table border="1" cellpadding="8" class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Joined Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let borrower of borrowers">
+        <td>{{ borrower.id }}</td>
+        <td>{{ borrower.name }}</td>
+        <td>{{ borrower.email }}</td>
+        <td>{{ borrower.joined_date }}</td>
+        <td>
+          <button class="btn btn-sm btn-info" [routerLink]="['/borrowers/edit', borrower.id]">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteBorrower(borrower.id!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ✅ Pagination -->
+  <div class="d-flex justify-content-center mt-3">
+    <button class="btn btn-outline-primary me-2" 
+            [disabled]="!pagination.previous" 
+            (click)="loadBorrowers(currentPage - 1)">
+      « Previous
+    </button>
+
+    <span>Page {{ currentPage }}</span>
+
+    <button class="btn btn-outline-primary ms-2" 
+            [disabled]="!pagination.next" 
+            (click)="loadBorrowers(currentPage + 1)">
+      Next »
+    </button>
+  </div>
+</div>
+
